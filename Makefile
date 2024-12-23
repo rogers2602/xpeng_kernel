@@ -1,7 +1,11 @@
 # SPDX-License-Identifier: GPL-2.0
 VERSION = 5
 PATCHLEVEL = 4
+<<<<<<< HEAD
 SUBLEVEL = 210
+=======
+SUBLEVEL = 284
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 EXTRAVERSION =
 NAME = Kleptomaniac Octopus
 

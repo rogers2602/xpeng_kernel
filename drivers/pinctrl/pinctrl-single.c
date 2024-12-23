@@ -1895,7 +1895,12 @@ static int pcs_probe(struct platform_device *pdev)
 
 	dev_info(pcs->dev, "%i pins, size %u\n", pcs->desc.npins, pcs->size);
 
+<<<<<<< HEAD
 	return pinctrl_enable(pcs->pctl);
+=======
+	if (pinctrl_enable(pcs->pctl))
+		goto free;
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 
 free:
 	pcs_free_resources(pcs);

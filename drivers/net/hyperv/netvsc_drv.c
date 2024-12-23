@@ -2457,6 +2457,7 @@ static int netvsc_netdev_event(struct notifier_block *this,
 {
 	struct net_device *event_dev = netdev_notifier_info_to_dev(ptr);
 
+<<<<<<< HEAD
 	/* Skip our own events */
 	if (event_dev->netdev_ops == &device_ops)
 		return NOTIFY_DONE;
@@ -2472,6 +2473,10 @@ static int netvsc_netdev_event(struct notifier_block *this,
 	/* Avoid Bonding master dev with same MAC registering as VF */
 	if ((event_dev->priv_flags & IFF_BONDING) &&
 	    (event_dev->flags & IFF_MASTER))
+=======
+	ret = check_dev_is_matching_vf(event_dev);
+	if (ret != 0)
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 		return NOTIFY_DONE;
 
 	switch (event) {

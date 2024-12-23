@@ -1935,8 +1935,14 @@ sub get_grub_index {
 	$skip = '^\s*title\s';
     } elsif ($reboot_type eq "grub2") {
 	$command = "cat $grub_file";
+<<<<<<< HEAD
 	$target = '^menuentry.*' . $grub_menu_qt;
 	$skip = '^menuentry\s|^submenu\s';
+=======
+	$target = '^\s*menuentry.*' . $grub_menu_qt;
+	$skip = '^\s*menuentry';
+	$submenu = '^\s*submenu\s';
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
     } elsif ($reboot_type eq "grub2bls") {
         $command = $grub_bls_get;
         $target = '^title=.*' . $grub_menu_qt;

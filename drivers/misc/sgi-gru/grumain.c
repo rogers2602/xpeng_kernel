@@ -934,7 +934,16 @@ again:
 	mutex_lock(&gts->ts_ctxlock);
 	preempt_disable();
 
+<<<<<<< HEAD
 	gru_check_context_placement(gts);
+=======
+	if (gru_check_context_placement(gts)) {
+		preempt_enable();
+		mutex_unlock(&gts->ts_ctxlock);
+		gru_unload_context(gts, 1);
+		return VM_FAULT_NOPAGE;
+	}
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 
 	if (!gts->ts_gru) {
 		STAT(load_user_context);

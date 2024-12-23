@@ -3048,7 +3048,10 @@ static sector_t raid10_sync_request(struct mddev *mddev, sector_t sector_nr,
 			int must_sync;
 			int any_working;
 			int need_recover = 0;
+<<<<<<< HEAD
 			int need_replace = 0;
+=======
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 			struct raid10_info *mirror = &conf->mirrors[i];
 			struct md_rdev *mrdev, *mreplace;
 
@@ -3060,11 +3063,18 @@ static sector_t raid10_sync_request(struct mddev *mddev, sector_t sector_nr,
 			    !test_bit(Faulty, &mrdev->flags) &&
 			    !test_bit(In_sync, &mrdev->flags))
 				need_recover = 1;
+<<<<<<< HEAD
 			if (mreplace != NULL &&
 			    !test_bit(Faulty, &mreplace->flags))
 				need_replace = 1;
 
 			if (!need_recover && !need_replace) {
+=======
+			if (mreplace && test_bit(Faulty, &mreplace->flags))
+				mreplace = NULL;
+
+			if (!need_recover && !mreplace) {
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 				rcu_read_unlock();
 				continue;
 			}

@@ -771,6 +771,11 @@ unregister_socket:
 	sock_unregister(PF_BLUETOOTH);
 cleanup_sysfs:
 	bt_sysfs_cleanup();
+<<<<<<< HEAD
+=======
+cleanup_led:
+	bt_leds_cleanup();
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 	return err;
 }
 

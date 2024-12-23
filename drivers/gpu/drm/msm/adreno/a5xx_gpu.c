@@ -135,8 +135,13 @@ static void a5xx_submit(struct msm_gpu *gpu, struct msm_gem_submit *submit,
 	OUT_RING(ring, 1);
 
 	/* Enable local preemption for finegrain preemption */
+<<<<<<< HEAD
 	OUT_PKT7(ring, CP_PREEMPT_ENABLE_GLOBAL, 1);
 	OUT_RING(ring, 0x02);
+=======
+	OUT_PKT7(ring, CP_PREEMPT_ENABLE_LOCAL, 1);
+	OUT_RING(ring, 0x1);
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 
 	/* Allow CP_CONTEXT_SWITCH_YIELD packets in the IB2 */
 	OUT_PKT7(ring, CP_YIELD_ENABLE, 1);

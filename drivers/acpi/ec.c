@@ -1313,6 +1313,12 @@ acpi_ec_space_handler(u32 function, acpi_physical_address address,
 		result = (function == ACPI_READ) ?
 			acpi_ec_read(ec, address, value) :
 			acpi_ec_write(ec, address, *value);
+<<<<<<< HEAD
+=======
+		if (result < 0)
+			break;
+	}
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 
 	if (ec->busy_polling || bits > 8)
 		acpi_ec_burst_disable(ec);

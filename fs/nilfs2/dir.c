@@ -347,9 +347,13 @@ nilfs_find_entry(struct inode *dir, const struct qstr *qstr,
 	do {
 		char *kaddr;
 
+<<<<<<< HEAD
 		page = nilfs_get_page(dir, n);
 		if (!IS_ERR(page)) {
 			kaddr = page_address(page);
+=======
+		if (!IS_ERR(kaddr)) {
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 			de = (struct nilfs_dir_entry *)kaddr;
 			kaddr += nilfs_last_byte(dir, n) - reclen;
 			while ((char *) de <= kaddr) {

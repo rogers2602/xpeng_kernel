@@ -382,9 +382,15 @@ static int nilfs_btree_root_broken(const struct nilfs_btree_node *node,
 		     level >= NILFS_BTREE_LEVEL_MAX ||
 		     nchildren < 0 ||
 		     nchildren > NILFS_BTREE_ROOT_NCHILDREN_MAX)) {
+<<<<<<< HEAD
 		nilfs_msg(inode->i_sb, KERN_CRIT,
 			  "bad btree root (ino=%lu): level = %d, flags = 0x%x, nchildren = %d",
 			  inode->i_ino, level, flags, nchildren);
+=======
+		nilfs_crit(inode->i_sb,
+			   "bad btree root (ino=%lu): level = %d, flags = 0x%x, nchildren = %d",
+			   inode->i_ino, level, flags, nchildren);
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 		ret = 1;
 	}
 	return ret;

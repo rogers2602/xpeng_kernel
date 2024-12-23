@@ -459,6 +459,12 @@ static int dwc3_alloc_event_buffers(struct dwc3 *dwc, unsigned length)
 int dwc3_event_buffers_setup(struct dwc3 *dwc)
 {
 	struct dwc3_event_buffer	*evt;
+<<<<<<< HEAD
+=======
+
+	if (!dwc->ev_buf)
+		return 0;
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 
 	evt = dwc->ev_buf;
 	evt->lpos = 0;

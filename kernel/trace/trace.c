@@ -1990,10 +1990,47 @@ static int allocate_cmdlines_buffer(unsigned int val,
 	if (!s->map_cmdline_to_pid)
 		return -ENOMEM;
 
+<<<<<<< HEAD
 	s->saved_cmdlines = kmalloc_array(TASK_COMM_LEN, val, GFP_KERNEL);
 	if (!s->saved_cmdlines) {
 		kfree(s->map_cmdline_to_pid);
 		return -ENOMEM;
+=======
+	kfree(s->map_cmdline_to_pid);
+	kmemleak_free(s);
+	free_pages((unsigned long)s, order);
+}
+
+static struct saved_cmdlines_buffer *allocate_cmdlines_buffer(unsigned int val)
+{
+	struct saved_cmdlines_buffer *s;
+	struct page *page;
+	int orig_size, size;
+	int order;
+
+	/* Figure out how much is needed to hold the given number of cmdlines */
+	orig_size = sizeof(*s) + val * TASK_COMM_LEN;
+	order = get_order(orig_size);
+	size = 1 << (order + PAGE_SHIFT);
+	page = alloc_pages(GFP_KERNEL, order);
+	if (!page)
+		return NULL;
+
+	s = page_address(page);
+	kmemleak_alloc(s, size, 1, GFP_KERNEL);
+	memset(s, 0, sizeof(*s));
+
+	/* Round up to actual allocation */
+	val = (size - sizeof(*s)) / TASK_COMM_LEN;
+	s->cmdline_num = val;
+
+	s->map_cmdline_to_pid = kmalloc_array(val,
+					      sizeof(*s->map_cmdline_to_pid),
+					      GFP_KERNEL);
+	if (!s->map_cmdline_to_pid) {
+		free_saved_cmdlines_buffer(s);
+		return NULL;
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 	}
 
 	s->cmdline_idx = 0;

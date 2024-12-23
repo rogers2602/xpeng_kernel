@@ -392,6 +392,12 @@ static ssize_t amdgpu_debugfs_regs_smc_read(struct file *f, char __user *buf,
 	ssize_t result = 0;
 	int r;
 
+<<<<<<< HEAD
+=======
+	if (!adev->smc_rreg)
+		return -EOPNOTSUPP;
+
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 	if (size & 0x3 || *pos & 0x3)
 		return -EINVAL;
 

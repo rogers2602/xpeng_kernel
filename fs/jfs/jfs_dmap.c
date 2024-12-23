@@ -181,9 +181,14 @@ int dbMount(struct inode *ipbmap)
 	bmp->db_l2nbperpage = le32_to_cpu(dbmp_le->dn_l2nbperpage);
 	bmp->db_numag = le32_to_cpu(dbmp_le->dn_numag);
 	if (!bmp->db_numag) {
+<<<<<<< HEAD
 		release_metapage(mp);
 		kfree(bmp);
 		return -EINVAL;
+=======
+		err = -EINVAL;
+		goto err_release_metapage;
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 	}
 
 	bmp->db_maxlevel = le32_to_cpu(dbmp_le->dn_maxlevel);
@@ -2967,6 +2972,12 @@ static void dbAdjTree(dmtree_t * tp, int leafno, int newval)
 static int dbFindLeaf(dmtree_t * tp, int l2nb, int *leafidx)
 {
 	int ti, n = 0, k, x = 0;
+<<<<<<< HEAD
+=======
+	int max_size;
+
+	max_size = is_ctl ? CTLTREESIZE : TREESIZE;
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 
 	/* first check the root of the tree to see if there is
 	 * sufficient free space.

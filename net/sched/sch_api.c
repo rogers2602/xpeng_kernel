@@ -1104,6 +1104,14 @@ skip:
 			return -ENOENT;
 		}
 
+<<<<<<< HEAD
+=======
+		if (new && new->ops == &noqueue_qdisc_ops) {
+			NL_SET_ERR_MSG(extack, "Cannot assign noqueue to a class");
+			return -EINVAL;
+		}
+
+>>>>>>> parent of 72001eaede21 (Merge branch 'LineageOS:lineage-21' into lineage-22)
 		err = cops->graft(parent, cl, new, &old, extack);
 		if (err)
 			return err;
