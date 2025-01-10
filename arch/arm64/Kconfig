@@ -1957,8 +1957,15 @@ config CAM_DISTINGUISH_SENSOR_VERSION
         help
         Add for distinguish sensor version.
 
+config CAMERA_SUB_DEVICE_PROBE
+	bool "For cam sub device probe after sensor"
+	default n
+	help
+	Enable it to probe cam sub devices after sensor
+
 config CAMERA_CCI_MASTER_CHANGE
-	bool "For cam cci master change"
+	bool "For cam cci master chance"
+        depends on CAMERA_SUB_DEVICE_PROBE
 	default n
 	help
 	Enable it to switch cci master i2c address.
@@ -2010,3 +2017,9 @@ config AW882XX_PARAMS_FROM_BIN
         default n
         help
         Enable it only for params of smartPA is stored in bin file.
+
+config UDFPS_USES_LHBM
+        bool "UDFPS uses LHBM"
+        default n
+        help
+        Enable it only if UDFPS uses LHBM instead of GHBM.
